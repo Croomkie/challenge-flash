@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { decode, sign } from "hono/jwt";
 import { Artist } from "../models/artists";
-import { handle } from "@hono/node-server/vercel";
+import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/auth");
 

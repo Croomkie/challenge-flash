@@ -4,7 +4,7 @@ import { isValidObjectId } from "mongoose";
 import { decode } from "hono/jwt";
 import { Flash } from "../models/flashs";
 import { SaveOnS3 } from "../aws-s3";
-import { handle } from "@hono/node-server/vercel";
+import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/artists");
 
