@@ -88,5 +88,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export const GET = handle(api);
-export const POST = handle(api);
+export default handle(api);

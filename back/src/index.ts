@@ -7,6 +7,7 @@ import artists from "./routes/artists";
 import { cors } from "hono/cors";
 import reservations from "./routes/reservations";
 import flashs from "./routes/flashs";
+import { handle } from "hono/vercel";
 
 const app = new Hono();
 await DbConnect();
@@ -25,6 +26,9 @@ app.route("/api", flashs);
 app.all("*", (c) => {
   return c.json({ msg: "404 oups" });
 });
+
+export const GET = handle(app);
+export const POST = handle(app);
 
 serve({
   fetch: app.fetch,

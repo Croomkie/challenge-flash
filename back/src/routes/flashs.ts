@@ -92,5 +92,4 @@ api.post("/", async (c) => {
   }
 });
 
-export const GET = handle(api);
-export const POST = handle(api);
+export default handle(api);
