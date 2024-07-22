@@ -3,6 +3,11 @@ import { Style } from "../models/styles";
 import { isValidObjectId } from "mongoose";
 import { SaveOnS3 } from "../aws-s3";
 import { handle } from "hono/vercel";
+import type { PageConfig } from "next";
+
+export const config: PageConfig = {
+  runtime: "edge",
+};
 
 const api = new Hono().basePath("/styles");
 

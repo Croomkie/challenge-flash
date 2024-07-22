@@ -2,6 +2,11 @@ import { Hono } from "hono";
 import { decode, sign } from "hono/jwt";
 import { Artist } from "../models/artists";
 import { handle } from "hono/vercel";
+import type { PageConfig } from "next";
+
+export const config: PageConfig = {
+  runtime: "edge",
+};
 
 const api = new Hono().basePath("/auth");
 
