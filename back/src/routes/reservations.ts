@@ -1,26 +1,26 @@
 import { Hono } from "hono";
 import { Reservation } from "../models/reservations";
 import { Artist } from "../models/artists";
-import {decode} from "hono/jwt";
-import { handle } from '@hono/node-server/vercel'
+import { decode } from "hono/jwt";
+import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/reservations");
 
 api.get("/", async (c) => {
   const { date } = c.req.query();
-  const userId = c.req.query("userId")
+  const userId = c.req.query("userId");
   if (!date) {
     return c.json(await Reservation.find());
   }
 
-  if(date && userId){
+  if (date && userId) {
     const dateFilter = new Date(date).setHours(0, 0, 0, 0);
     const reservations = await Reservation.find({
       start_date: {
         $gte: dateFilter,
         $lt: new Date(dateFilter).setDate(new Date(dateFilter).getDate() + 1),
       },
-      artist : userId,
+      artist: userId,
     });
     return c.json(reservations);
   }
@@ -53,7 +53,7 @@ api.get("/", async (c) => {
 
 api.post("/", async (c) => {
   const body = await c.req.json();
-  console.log(body)
+  console.log(body);
   try {
     const newReservation = new Reservation(body);
     const saveReservation = await newReservation.save();
@@ -88,4 +88,5 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default handle(api);
+export const GET = handle(api);
+export const POST = handle(api);

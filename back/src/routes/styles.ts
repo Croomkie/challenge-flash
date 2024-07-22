@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { Style } from "../models/styles";
 import { isValidObjectId } from "mongoose";
 import { SaveOnS3 } from "../aws-s3";
-import { handle } from '@hono/node-server/vercel'
+import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/styles");
 
@@ -42,7 +42,7 @@ api.put("/:id", async (c) => {
     body,
     {
       new: true,
-    },
+    }
   );
   return c.json(tryToUpdate, 200);
 });
@@ -57,4 +57,5 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default handle(api);
+export const GET = handle(api);
+export const POST = handle(api);

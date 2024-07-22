@@ -4,7 +4,7 @@ import { isValidObjectId } from "mongoose";
 import { decode } from "hono/jwt";
 import { Flash } from "../models/flashs";
 import { SaveOnS3 } from "../aws-s3";
-import { handle } from '@hono/node-server/vercel'
+import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/artists");
 
@@ -79,10 +79,10 @@ api.get("/flash/:id", async (c) => {
   }
 
   const oneArtist = await Artist.findOne({
-    flashs: {$in : _id}
-  })
+    flashs: { $in: _id },
+  });
 
-  return c.json(oneArtist)
+  return c.json(oneArtist);
 });
 
 api.post("/", async (c) => {
@@ -123,7 +123,7 @@ api.post("/flashs", async (c) => {
     updateQuery,
     {
       new: true,
-    },
+    }
   );
   return c.json(tryToUpdate);
 });
@@ -160,7 +160,7 @@ api.patch("/:id", async (c) => {
     },
     {
       new: true,
-    },
+    }
   );
   return c.json(tryToUpdate, 200);
 });
@@ -175,4 +175,5 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default handle(api);
+export const GET = handle(api);
+export const POST = handle(api);
