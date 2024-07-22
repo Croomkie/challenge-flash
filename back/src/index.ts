@@ -7,7 +7,7 @@ import artists from "./routes/artists";
 import { cors } from "hono/cors";
 import reservations from "./routes/reservations";
 import flashs from "./routes/flashs";
-import { handle } from "hono/vercel";
+import { handle } from "@hono/node-server/vercel";
 
 const app = new Hono();
 await DbConnect();

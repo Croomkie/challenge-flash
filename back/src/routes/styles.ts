@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { Style } from "../models/styles";
 import { isValidObjectId } from "mongoose";
 import { SaveOnS3 } from "../aws-s3";
+import { handle } from "@hono/node-server/vercel";
 
 const api = new Hono().basePath("/styles");
 
@@ -56,4 +57,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default api;
+export default handle(api);

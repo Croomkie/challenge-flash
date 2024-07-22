@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { Reservation } from "../models/reservations";
 import { Artist } from "../models/artists";
 import { decode } from "hono/jwt";
+import { handle } from "@hono/node-server/vercel";
 
 const api = new Hono().basePath("/reservations");
 
@@ -87,4 +88,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default api;
+export default handle(api);

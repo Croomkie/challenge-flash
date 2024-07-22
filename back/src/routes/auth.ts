@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { decode, sign } from "hono/jwt";
 import { Artist } from "../models/artists";
+import { handle } from "@hono/node-server/vercel";
 
 const api = new Hono().basePath("/auth");
 
@@ -47,4 +48,4 @@ api.get("/me", async (c) => {
   }
 });
 
-export default api;
+export default handle(api);
