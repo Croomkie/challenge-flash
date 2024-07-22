@@ -1,9 +1,9 @@
 import { Hono } from "hono";
-import { Artist } from "../models/artists";
+import { Artist } from "../../../models/artists";
 import { isValidObjectId } from "mongoose";
 import { decode } from "hono/jwt";
-import { Flash } from "../models/flashs";
-import { SaveOnS3 } from "../aws-s3";
+import { Flash } from "../../../models/flashs";
+import { SaveOnS3 } from "../../../aws-s3";
 import { handle } from "hono/vercel";
 import type { PageConfig } from "next";
 

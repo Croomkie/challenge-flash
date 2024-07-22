@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { Flash } from "../models/flashs";
-import { SaveOnS3 } from "../aws-s3";
+import { Flash } from "../../../models/flashs";
+import { SaveOnS3 } from "../../../aws-s3";
 import { isValidObjectId } from "mongoose";
 import { handle } from "hono/vercel";
 import type { PageConfig } from "next";

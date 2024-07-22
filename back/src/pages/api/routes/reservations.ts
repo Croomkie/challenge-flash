@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { Reservation } from "../models/reservations";
-import { Artist } from "../models/artists";
+import { Reservation } from "../../../models/reservations";
+import { Artist } from "../../../models/artists";
 import { decode } from "hono/jwt";
 import { handle } from "hono/vercel";
 import type { PageConfig } from "next";

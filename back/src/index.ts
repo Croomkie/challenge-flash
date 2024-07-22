@@ -1,12 +1,12 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { DbConnect } from "./db";
-import styles from "./routes/styles";
-import auth from "./routes/auth";
-import artists from "./routes/artists";
+import styles from "./pages/api/routes/styles";
+import auth from "./pages/api/routes/auth";
+import artists from "./pages/api/routes/artists";
 import { cors } from "hono/cors";
-import reservations from "./routes/reservations";
-import flashs from "./routes/flashs";
+import reservations from "./pages/api/routes/reservations";
+import flashs from "./pages/api/routes/flashs";
 import { handle } from "@hono/node-server/vercel";
 import type { PageConfig } from "next";
 
