@@ -8,6 +8,13 @@ import { cors } from "hono/cors";
 import reservations from "./routes/reservations";
 import flashs from "./routes/flashs";
 import { handle } from "@hono/node-server/vercel";
+import type { PageConfig } from "next";
+
+export const config: PageConfig = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 const app = new Hono();
 await DbConnect();
