@@ -2,7 +2,6 @@ import { Hono } from "hono";
 import { Flash } from "../models/flashs";
 import { SaveOnS3 } from "../aws-s3";
 import { isValidObjectId } from "mongoose";
-import { handle } from "hono/vercel";
 
 const api = new Hono().basePath("/flashs");
 
@@ -92,4 +91,4 @@ api.post("/", async (c) => {
   }
 });
 
-export default handle(api);
+export default api;
