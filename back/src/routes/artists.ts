@@ -4,6 +4,7 @@ import { isValidObjectId } from "mongoose";
 import { decode } from "hono/jwt";
 import { Flash } from "../models/flashs";
 import { SaveOnS3 } from "../aws-s3";
+import { handle } from '@hono/node-server/vercel'
 
 const api = new Hono().basePath("/artists");
 
@@ -174,4 +175,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default api;
+export default handle(api);
