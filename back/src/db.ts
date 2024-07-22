@@ -1,20 +1,19 @@
-import {connect} from "mongoose"
-import {myEnv} from '../conf'
+import { connect } from "mongoose";
+// @ts-ignore
+import { myEnv } from "../conf.js";
 
-const CONNECTION_STRING = `mongodb+srv://${myEnv.MONGODB_USER}:${myEnv.MONGODB_PWD}@${myEnv.MONGODB_CLUSTER}/${myEnv.MONGODB_DATABASE}`
-
+const CONNECTION_STRING = `mongodb+srv://${myEnv.MONGODB_USER}:${myEnv.MONGODB_PWD}@${myEnv.MONGODB_CLUSTER}/${myEnv.MONGODB_DATABASE}`;
 
 // if(myEnv.MONGOOSE_DEBUG==='true') mongoose.set('debug', false);
 
 export async function DbConnect() {
-    try {
-        // _declareMongoEvents()
-        const _db = await connect(CONNECTION_STRING)
-        console.log(`🟢 connected to Atlas Cluster: ${myEnv.MONGODB_CLUSTER}`);
-        return _db
-    } catch (e: any) {
-        console.warn(e.errorResponse)
-        return e;
-    }
+  try {
+    // _declareMongoEvents()
+    const _db = await connect(CONNECTION_STRING);
+    console.log(`🟢 connected to Atlas Cluster: ${myEnv.MONGODB_CLUSTER}`);
+    return _db;
+  } catch (e: any) {
+    console.warn(e.errorResponse);
+    return e;
+  }
 }
-

@@ -1,13 +1,7 @@
 import { Hono } from "hono";
-import { Style } from "../../../models/styles";
+import { Style } from "../models/styles.js";
 import { isValidObjectId } from "mongoose";
-import { SaveOnS3 } from "../../../aws-s3";
-import { handle } from "hono/vercel";
-import type { PageConfig } from "next";
-
-export const config: PageConfig = {
-  runtime: "edge",
-};
+import { SaveOnS3 } from "../aws-s3.js";
 
 const api = new Hono().basePath("/styles");
 
@@ -62,4 +56,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default handle(api);
+export default api;

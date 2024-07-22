@@ -1,13 +1,7 @@
 import { Hono } from "hono";
-import { Reservation } from "../../../models/reservations";
-import { Artist } from "../../../models/artists";
+import { Reservation } from "../models/reservations.js";
+import { Artist } from "../models/artists.js";
 import { decode } from "hono/jwt";
-import { handle } from "hono/vercel";
-import type { PageConfig } from "next";
-
-export const config: PageConfig = {
-  runtime: "edge",
-};
 
 const api = new Hono().basePath("/reservations");
 
@@ -93,4 +87,4 @@ api.delete("/:id", async (c) => {
   return c.json({ msg: "not found" }, 404);
 });
 
-export default handle(api);
+export default api;
