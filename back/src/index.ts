@@ -27,9 +27,6 @@ app.all("*", (c) => {
   return c.json({ msg: "404 oups" });
 });
 
-export const GET = handle(app);
-export const POST = handle(app);
-
 serve({
   fetch: app.fetch,
   port,
