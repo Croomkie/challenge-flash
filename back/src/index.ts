@@ -7,13 +7,10 @@ import artists from "./routes/artists";
 import { cors } from "hono/cors";
 import reservations from "./routes/reservations";
 import flashs from "./routes/flashs";
-import { handle } from "hono/vercel";
+import { handle } from "@hono/node-server/vercel";
 
 const app = new Hono();
 await DbConnect();
-
-const port = 3000;
-console.log(`Server is running on port ${port}`);
 
 app.use("/api/*", cors());
 
@@ -27,7 +24,4 @@ app.all("*", (c) => {
   return c.json({ msg: "404 oups" });
 });
 
-serve({
-  fetch: app.fetch,
-  port,
-});
+export default handle(app);
