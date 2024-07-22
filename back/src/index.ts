@@ -5,7 +5,7 @@ import artists from "./routes/artists.js";
 import { cors } from "hono/cors";
 import reservations from "./routes/reservations.js";
 import flashs from "./routes/flashs.js";
-import { createServer } from "node:http2";
+import { createServer } from "node:http";
 import { serve } from "@hono/node-server";
 import { DbConnect } from "./db.js";
 
